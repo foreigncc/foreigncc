@@ -1,0 +1,60 @@
+{
+  "configurations": [
+    {
+      "name": "VS2017 Win64 Debug",
+      "generator": "Visual Studio 15 2017 Win64",
+      "configurationType": "Debug",
+      "inheritEnvironments": [
+        "msvc_x64_x64"
+      ],
+      "intelliSenseMode": "windows-msvc-x64",
+      "buildRoot": "${projectDir}/CMakeBuilds/${name}/build",
+      "installRoot": "${projectDir}/CMakeBuilds/${name}/install",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": ""
+    },
+    {
+      "name": "VS2017 Win64 Release",
+      "generator": "Visual Studio 15 2017 Win64",
+      "configurationType": "RelWithDebInfo",
+      "inheritEnvironments": [
+        "msvc_x64_x64"
+      ],
+      "intelliSenseMode": "windows-msvc-x64",
+      "buildRoot": "${projectDir}/CMakeBuilds/${name}/build",
+      "installRoot": "${projectDir}/CMakeBuilds/${name}/install",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": ""
+    },
+    {
+      "name": "VS2017 Win32 Debug",
+      "generator": "Visual Studio 15 2017",
+      "configurationType": "Debug",
+      "inheritEnvironments": [
+        "msvc_x86"
+      ],
+      "intelliSenseMode": "windows-msvc-x86",
+      "buildRoot": "${projectDir}/CMakeBuilds/${name}/build",
+      "installRoot": "${projectDir}/CMakeBuilds/${name}/install",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": ""
+    },
+    {
+      "name": "VS2017 Win32 Release",
+      "generator": "Visual Studio 15 2017",
+      "configurationType": "RelWithDebInfo",
+      "inheritEnvironments": [
+        "msvc_x86"
+      ],
+      "intelliSenseMode": "windows-msvc-x86",
+      "buildRoot": "${projectDir}/CMakeBuilds/${name}/build",
+      "installRoot": "${projectDir}/CMakeBuilds/${name}/install",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": ""
+    }
+  ]
+}

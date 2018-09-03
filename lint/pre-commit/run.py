@@ -11,13 +11,13 @@ import subprocess
 
 KNOWN_TEXT_SUFFIX = [
     "c", "C", "cpp", "cxx", "cc",
-    "h", "H", "hpp", "hxx", "hh",
+    "h", "H", "hpp", "hxx", "hh", "cmakein",
     "sh", "bash", "py",
-    "txt", "md",
+    "txt", "md", "json"
 ]
 
 KNOWN_TEXT_FILENAME = [
-    "LICENSE",
+    "LICENSE", ".gitignore"
 ]
 
 KNOWN_BINARY_SUFFIX = [

@@ -1,0 +1,14 @@
+#ifndef _FOREIGNCC_CONFIG_H_INCLUDED_
+#define _FOREIGNCC_CONFIG_H_INCLUDED_
+
+// foreigncc version number format:
+//   <major>.<minor>.<patch> <suffix>
+// <suffix> could be:
+//   "stable" "rc" "beta" "alpha" "unstable"
+#define FOREIGNCC_VERSION_MAJOR              (@FOREIGNCC_VERSION_MAJOR@)
+#define FOREIGNCC_VERSION_MINOR              (@FOREIGNCC_VERSION_MINOR@)
+#define FOREIGNCC_VERSION_PATCH              (@FOREIGNCC_VERSION_PATCH@)
+#define FOREIGNCC_VERSION_SUFFIX             ("@FOREIGNCC_VERSION_SUFFIX@")
+
+
+#endif // _FOREIGNCC_CONFIG_H_INCLUDED_
