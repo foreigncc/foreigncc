@@ -33,9 +33,9 @@ KNOWN_EXECUTABLE_SUFFIX = [
 
 def run(cmd):
     ps = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    ps.wait()
     out = ps.stdout.read()
     err = ps.stderr.read()
+    ps.wait()
     if ps.returncode != 0:
         raise RuntimeError("`%s` exited with %d. \n==== stdout ====\n%s\n==== stderr ====\n%s" % (cmd, ps.returncode, out, err))
     return (out, err)
@@ -85,7 +85,7 @@ def check_file(file, dofix):
             while line_txt and line_txt[-1] in ('\r', '\n'):
                 line_end = line_txt[-1] + line_end
                 line_txt = line_txt[:-1]
-            assert line_end
+            assert line_end or lineno == len(lines) # last line
 
             if line_end != "\n":
                 if dofix:
@@ -151,6 +151,9 @@ def main(args):
     out, _ = run("git ls-files")
     files = [file for file in out.split('\n') if file]
     for file in files:
+        if file.startswith("thirdparty/"):
+            if os.path.dirname(file) != "thirdparty":
+                continue
         if not os.path.islink(file):
             assert os.path.isfile(file)
             success = check_file(file, dofix) and success

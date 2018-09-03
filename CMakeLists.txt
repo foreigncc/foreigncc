@@ -13,8 +13,14 @@ set(FOREIGNCC_VERSION_PATCH 1)
 set(FOREIGNCC_VERSION_SUFFIX "unstable")
 
 
-# Add source files to include directories
+# Third-party libraries
+# Directory thirdparty/${THIRDPARTY_XXX} should be found
+set(THIRDPARTY_BOOST boost_1_68_0)
+
+
+# Add source files and third-party libraries to include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/${THIRDPARTY_BOOST})
 
 
 # Configure config.h and add the destination to include directories
