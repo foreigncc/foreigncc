@@ -180,6 +180,13 @@ namespace common
                 message = "(no message)"; \
             } \
             else { \
+                /* Trim \r\n at the end of Win32 error message */ \
+                if (size > 0 && messageBuffer[size - 1] == '\n') { \
+                    --size; \
+                    if (size > 0 && messageBuffer[size - 1] == '\r') { \
+                        --size; \
+                    } \
+                } \
                 message = std::string(messageBuffer, size); \
             } \
             const char* const internal_msgs[] = { \
@@ -187,7 +194,7 @@ namespace common
             }; \
             ::common::Panic("CALL_WIN(" #_Expr ")", __FILE__, __LINE__, ::get_array_size(internal_msgs), internal_msgs, ##__VA_ARGS__); \
             if (size != 0) { \
-                LocalFree(message); \
+                LocalFree(messageBuffer); \
             } \
         } \
         return ret; \
