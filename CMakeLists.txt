@@ -23,6 +23,48 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/${THIRDPARTY_BOOST})
 
 
+# Enable C11, C++11
+if (CMAKE_VERSION VERSION_LESS 3.1)
+    include(CheckCXXCompilerFlag)
+
+    # Add the C11/C++11 flag, whatever it is
+    macro(AddCOrCpp11 add_to test_option flag)
+        if (NOT ${flag})
+            CHECK_CXX_COMPILER_FLAG("${test_option}" ${flag})
+            if (${flag})
+                set(${add_to} "${${add_to}} ${test_option}")
+            endif()
+        endif()
+    endmacro()
+
+    AddCOrCpp11(CMAKE_CXX_FLAGS "-std=c++11" COMPILER_SUPPORTS_CXX11)
+    AddCOrCpp11(CMAKE_CXX_FLAGS "/std:c++11" COMPILER_SUPPORTS_CXX11)
+
+    # Doesn't require C11 at this time
+    #AddCOrCpp11(CMAKE_C_FLAGS "-std=c11" COMPILER_SUPPORTS_C11)
+    #AddCOrCpp11(CMAKE_C_FLAGS "/std:c11" COMPILER_SUPPORTS_C11)
+
+    # TODO: Maybe other flags?
+    if (NOT COMPILER_SUPPORTS_CXX11)
+        message(FATAL_ERROR "The C++ compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Consider using a different C++ compiler.")
+    endif()
+    #if (NOT COMPILER_SUPPORTS_C11)
+    #    message(FATAL_ERROR "The C compiler ${CMAKE_C_COMPILER} has no C11 support. Consider using a different C compiler.")
+    #endif()
+else()
+    # Require C++11 support, prefer ISO C++ over GNU variants,
+    # as relying solely on ISO C++ is more portable.
+    set(CMAKE_CXX_STANDARD 11)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+    set(CMAKE_CXX_EXTENSIONS OFF)
+
+    # Doesn't require C11 at this time
+    #set(CMAKE_C_STANDARD 11)
+    #set(CMAKE_C_STANDARD_REQUIRED ON)
+    #set(CMAKE_C_EXTENSIONS OFF)
+endif()
+
+
 # Configure config.h and add the destination to include directories
 configure_file(
     "src/config.h.cmakein"
