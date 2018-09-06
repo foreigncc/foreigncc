@@ -1,0 +1,27 @@
+image:
+  #- Visual Studio 2015
+  - Visual Studio 2017
+
+configuration:
+  - Release
+
+environment:
+  matrix:
+    - GENERATE_ARCH: Win64
+    - GENERATE_ARCH: ""  # empty
+
+branches:
+  except:
+    - /^t(e)?mp/
+
+before_build:
+  - cd "%APPVEYOR_BUILD_FOLDER%" && call ci/windows/before_build.bat
+
+build_script:
+  - cd "%APPVEYOR_BUILD_FOLDER%" && call ci/windows/build.bat
+
+test_script:
+  - cd "%APPVEYOR_BUILD_FOLDER%" && call ci/windows/test.bat
+
+deploy_script:
+  - cd "%APPVEYOR_BUILD_FOLDER%" && call ci/windows/deploy.bat

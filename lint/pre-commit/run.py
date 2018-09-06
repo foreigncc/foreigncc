@@ -12,8 +12,8 @@ import subprocess
 KNOWN_TEXT_SUFFIX = [
     "c", "C", "cpp", "cxx", "cc",
     "h", "H", "hpp", "hxx", "hh", "cmakein",
-    "sh", "bash", "py",
-    "txt", "md", "json"
+    "sh", "bash", "bashrc", "py", "bat",
+    "txt", "md", "json", "yml",
 ]
 
 KNOWN_TEXT_FILENAME = [
@@ -27,7 +27,7 @@ KNOWN_BINARY_FILENAME = [
 ]
 
 KNOWN_EXECUTABLE_SUFFIX = [
-    "bash",
+    "bash", "bat",
 ]
 
 
